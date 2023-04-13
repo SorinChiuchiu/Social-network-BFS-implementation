@@ -1,1 +1,1 @@
-# Social-network-BFS-implementation
+# Social-network-SocialNetwork.BFS-implementation

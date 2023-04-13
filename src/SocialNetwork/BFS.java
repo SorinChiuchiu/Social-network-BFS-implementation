@@ -1,7 +1,9 @@
+package SocialNetwork;
+
 public class BFS {
     public static void main(String[] args) {
         int[][] graphMatrix = {
-                {0, 1, 1, 0, 0, 0},
+                {1, 1, 1, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0},
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 1, 0},
