@@ -100,4 +100,42 @@ public class Graph {
         System.out.println(traversal.toString());
         return false;
     }
+
+    public int BFSDistance(int start, int target) {
+        Queue<Integer> queue = new LinkedList<>(); // used to store the nodes that will be traversed
+        ArrayList<Integer> traversal = new ArrayList<>(); // stores the map returned by the SocialNetwork.BFS algorithm in case target is not found
+        ArrayList<Integer> visited = new ArrayList<>();
+        Integer[] distances = new Integer[size]; // stores the distances between starting node and the other nodes
+        // verify if start node is valid
+        try {
+            distances[start] = 0;
+            visited.add(start);
+            queue.add(start);
+            traversal.add(start);
+        } catch (Exception e) {
+            return -1;
+        }
+        // while there are no nodes in the queue, we search for the target node by adding the unvisited neighbours to the queue
+        // and we calculate the distance and the SocialNetwork.BFS traversal
+        while (!queue.isEmpty()) {
+            int currentNode = queue.poll();
+            if (vertex[currentNode] != null) {
+                for (int neigbour : vertex[currentNode]) {
+                    if (neigbour == target) {
+                        distances[neigbour] = distances[currentNode] + 1;
+                        return distances[neigbour];
+                    } else if (!visited.contains(neigbour)) {
+                        distances[neigbour] = distances[currentNode] + 1;
+                        traversal.add(neigbour);
+                        queue.add(neigbour);
+                        visited.add(neigbour);
+                    }
+                }
+
+            }
+        }
+        System.out.print("SocialNetwork.BFS traversal of the graph is: ");
+        System.out.println(traversal.toString());
+        return -1;
+    }
 }

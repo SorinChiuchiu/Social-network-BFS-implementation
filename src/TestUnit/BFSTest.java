@@ -45,6 +45,32 @@ public class BFSTest {
         Graph g = new Graph(gM);
         assertEquals(false, g.BFS(-1,5));
     }
+
+    @Test
+    public void BFSDistanceTestPositiveInvalidStart() {
+        int[][] gM = {
+                {0, 1, 1, 0, 0, 0},
+                {0, 0, 1, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 0, 0}};
+        Graph g = new Graph(gM);
+        assertEquals(-1, g.BFSDistance(-1,5));
+    }
+    @Test
+    public void BFSDistanceTestPositive() {
+        int[][] gM = {
+                {0, 1, 1, 0, 0, 0},
+                {0, 0, 1, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 0, 0}};
+        Graph g = new Graph(gM);
+        assertEquals(3, g.BFSDistance(0,5));
+    }
+
     @Test
     public void GraphHasCyclesInitialisationFailed() {
         int[][] gM = {
