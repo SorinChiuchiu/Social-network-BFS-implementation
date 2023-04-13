@@ -9,7 +9,7 @@ import java.util.Optional;
 
 public class BFSTest {
     @Test
-    public void BFSTruthTestTrue() {
+    public void BFSTruthTestPositive() {
         int[][] gM = {
                 {0, 1, 1, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0},
@@ -21,7 +21,7 @@ public class BFSTest {
         assertEquals(true, g.BFS(0,5));
     }
     @Test
-    public void BFSTruthTestNegative() {
+    public void BFSTruthTestNegativeInvalidTarget() {
         int[][] gM = {
                 {0, 1, 1, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0},
@@ -31,6 +31,19 @@ public class BFSTest {
                 {0, 0, 0, 0, 0, 0}};
         Graph g = new Graph(gM);
         assertEquals(true, g.BFS(0,7));
+    }
+
+    @Test
+    public void BFSTruthTestPositiveInvalidStart() {
+        int[][] gM = {
+                {0, 1, 1, 0, 0, 0},
+                {0, 0, 1, 1, 0, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 1, 0},
+                {0, 0, 0, 0, 0, 1},
+                {0, 0, 0, 0, 0, 0}};
+        Graph g = new Graph(gM);
+        assertEquals(false, g.BFS(-1,5));
     }
     @Test
     public void GraphHasCyclesInitialisationFailed() {

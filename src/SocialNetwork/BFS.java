@@ -2,6 +2,7 @@ package SocialNetwork;
 
 public class BFS {
     public static void main(String[] args) {
+        // Adjacency matrix used to represent the social network
         int[][] graphMatrix = {
                 {1, 1, 1, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0},
