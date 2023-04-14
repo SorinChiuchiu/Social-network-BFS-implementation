@@ -30,7 +30,8 @@ public class Graph {
         verifyMatrix(networkAdjacencyMatrix);
         socialNetworkSize = networkAdjacencyMatrix.length;
         socialNetworkMember = new ArrayList[socialNetworkSize];
-        // we add the neighbours of each person in the network.
+        // we add the neighbours of each node (person) in the network.
+        // each node will have all neighbours so that the graph can be traversed starting from any node
         for (int i = 0; i < socialNetworkSize; i++) {
             socialNetworkMember[i] = new ArrayList<>();
             for (int j = 0; j < socialNetworkSize; j++) {

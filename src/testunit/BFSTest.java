@@ -8,6 +8,7 @@ import socialnetwork.Graph;
 import org.junit.Test;
 
 public class BFSTest {
+    //node 0 has a cycle: graphMatrix[0][0] is 1
     @Test(expected = NodeHasCycleException.class)
     public void whenNodeHasCyclesExceptionThrown_AssertionSucceeds() {
         int[][] graphMatrix = {
@@ -20,8 +21,9 @@ public class BFSTest {
         new Graph(graphMatrix);
     }
 
+    // node 5 has no connection
     @Test(expected = NodeIsIsolatedException.class)
-    public void whenNodeHasIsolatedNodesExceptionThrown_AssertionSucceeds() {
+    public void whenNodeIsIsolatedExceptionThrown_AssertionSucceeds() {
         int[][] graphMatrix = {
                 {0, 1, 1, 0, 0, 0},
                 {0, 0, 1, 1, 0, 0},
