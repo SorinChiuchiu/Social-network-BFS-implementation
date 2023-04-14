@@ -102,10 +102,9 @@ public class BFSTest {
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
         Graph graph = new Graph(graphMatrix);
-        int start = 1;
+        int start = 0;
         int target = 4;
-        graph.BFS(start, target);
-        assertEquals(2, graph.BFS(0,4));
+        assertEquals(2, graph.BFS(start,target));
     }
 
     @Test
