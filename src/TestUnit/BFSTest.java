@@ -2,10 +2,9 @@ package TestUnit;
 
 import static org.junit.Assert.assertEquals;
 
-import SocialNetwork.Graph;
+import SocialNetwork.GraphDistance;
+import SocialNetwork.GraphTruth;
 import org.junit.Test;
-
-import java.util.Optional;
 
 public class BFSTest {
     @Test
@@ -17,7 +16,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphTruth g = new GraphTruth(gM);
         assertEquals(true, g.BFS(0,5));
     }
     @Test
@@ -29,7 +28,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphTruth g = new GraphTruth(gM);
         assertEquals(true, g.BFS(0,7));
     }
 
@@ -42,7 +41,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphTruth g = new GraphTruth(gM);
         assertEquals(false, g.BFS(-1,5));
     }
 
@@ -55,7 +54,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphDistance g = new GraphDistance(gM);
         assertEquals(-1, g.BFSDistance(-1,5));
     }
     @Test
@@ -67,7 +66,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphDistance g = new GraphDistance(gM);
         assertEquals(3, g.BFSDistance(0,5));
     }
 
@@ -80,7 +79,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 1},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphTruth g = new GraphTruth(gM);
         int size = g.getSize();
         assertEquals(0, size);
     }
@@ -93,7 +92,7 @@ public class BFSTest {
                 {0, 0, 0, 0, 1, 0},
                 {0, 0, 0, 0, 0, 0},
                 {0, 0, 0, 0, 0, 0}};
-        Graph g = new Graph(gM);
+        GraphTruth g = new GraphTruth(gM);
         int size = g.getSize();
         assertEquals(0, size);
     }

@@ -3,20 +3,26 @@ package SocialNetwork;
 import lombok.Getter;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.Queue;
 
 // A dedicated class to build and traverse the social network defined by an adjacency matrix
 @Getter
-public class Graph {
+public class GraphTruth {
     // Array containing each node and its neighbours. (each friend in the social network and its other friends)
     private ArrayList<Integer>[] vertex;
     // number of nodes in the graph. (number of friends in the social network)
-    private Integer size = 0;
+    private Integer size;
 
-    public Graph(int[][] gM) {
+    public GraphTruth(){}
+
+    public GraphTruth(int[][] gM) {
+        generateGraph(gM);
+    }
+
+    public void generateGraph(int[][] gM) {
         // before we initialise the object, we verify if the matrix is correct.
+        size = 0;
         if (verifyMatrix(gM)) {
             size = gM.length;
             vertex = new ArrayList[size];
@@ -30,7 +36,6 @@ public class Graph {
                 }
             }
         }
-//        System.out.println(Arrays.toString(vertex));
     }
 
     // Function used to verify if the matrix is correct.
@@ -40,12 +45,12 @@ public class Graph {
         for (int i = 0; i < gM.length; i++) {
             boolean noNeighbour = true;
             for (int j = 0; j < gM.length; j++) {
-                if (i == j && gM[i][j] == 1) {
-                    System.out.println("Node has cycles to itself");
-                    return false;
-                }
                 if (gM[i][j] == 1 || gM[j][i] == 1) {
                     noNeighbour = false;
+                }
+                else if (i == j && gM[i][j] == 1) {
+                    System.out.println("A node has cycles to itself");
+                    return false;
                 }
             }
             if (noNeighbour) {
@@ -80,62 +85,21 @@ public class Graph {
         // and we calculate the distance and the SocialNetwork.BFS traversal
         while (!queue.isEmpty()) {
             int currentNode = queue.poll();
-            if (vertex[currentNode] != null) {
-                for (int neigbour : vertex[currentNode]) {
-                    if (neigbour == target) {
-                        distances[neigbour] = distances[currentNode] + 1;
-                        System.out.println("distance from " + start + " to " + target + " is: " + distances[neigbour]);
-                        return true;
-                    } else if (!visited.contains(neigbour)) {
-                        distances[neigbour] = distances[currentNode] + 1;
-                        traversal.add(neigbour);
-                        queue.add(neigbour);
-                        visited.add(neigbour);
-                    }
+            for (int neigbour : vertex[currentNode]) {
+                if (neigbour == target) {
+                    distances[neigbour] = distances[currentNode] + 1;
+                    System.out.println("Distance from " + start + " to " + target + " is: " + distances[neigbour]);
+                    return true;
+                } else if (!visited.contains(neigbour)) {
+                    distances[neigbour] = distances[currentNode] + 1;
+                    traversal.add(neigbour);
+                    queue.add(neigbour);
+                    visited.add(neigbour);
                 }
-
             }
         }
         System.out.print("SocialNetwork.BFS traversal of the graph is: ");
         System.out.println(traversal.toString());
         return false;
-    }
-
-    public int BFSDistance(int start, int target) {
-        Queue<Integer> queue = new LinkedList<>(); // used to store the nodes that will be traversed
-        ArrayList<Integer> traversal = new ArrayList<>(); // stores the map returned by the SocialNetwork.BFS algorithm in case target is not found
-        ArrayList<Integer> visited = new ArrayList<>();
-        Integer[] distances = new Integer[size]; // stores the distances between starting node and the other nodes
-        // verify if start node is valid
-        try {
-            distances[start] = 0;
-            visited.add(start);
-            queue.add(start);
-            traversal.add(start);
-        } catch (Exception e) {
-            return -1;
-        }
-        // while there are no nodes in the queue, we search for the target node by adding the unvisited neighbours to the queue
-        // and we calculate the distance and the SocialNetwork.BFS traversal
-        while (!queue.isEmpty()) {
-            int currentNode = queue.poll();
-            if (vertex[currentNode] != null) {
-                for (int neigbour : vertex[currentNode]) {
-                    if (neigbour == target) {
-                        distances[neigbour] = distances[currentNode] + 1;
-                        return distances[neigbour];
-                    } else if (!visited.contains(neigbour)) {
-                        distances[neigbour] = distances[currentNode] + 1;
-                        traversal.add(neigbour);
-                        queue.add(neigbour);
-                        visited.add(neigbour);
-                    }
-                }
-
-            }
-        }
-        System.out.print("SocialNetwork.BFS traversal of the graph is: ");
-        System.out.println(traversal.toString());
-        return -1;
     }
 }
